@@ -5,9 +5,12 @@
 
 class ofApp : public ofBaseApp{
 
+    private:
+    
 	public:
+    
         //---for the images
-        ofImage imageArray[11];
+        array<ofImage, 18> imageArray;
         //---for the timer
         float ellapsedTime;
 
@@ -26,4 +29,6 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+    
+        void loadImages(vector<string> imageURLs);
 };

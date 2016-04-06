@@ -3,13 +3,15 @@
 //--------------------------------------------------------------
 void ofApp::setup()
 {
-    string im = "images/img";
-    string jpg = ".jpg";
-    for (int m = 0; m <= 10; m++)
-    {
-        imageArray[m].load(im + to_string(m) + jpg);
-        cout << im + to_string(m) + jpg;
-    }
+//    string im = "images/img";
+//    string jpg = ".jpg";
+//    for (int m = 0; m <= 10; m++)
+//    {
+//        imageArray[m].load(im + to_string(m) + jpg);
+//        cout << im + to_string(m) + jpg;
+//    }
+    vector<string> v {"images/img1.jpg"};
+    loadImages(v);
 }
 
 //--------------------------------------------------------------
@@ -80,4 +82,22 @@ void ofApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
+}
+
+
+/**
+ * Given an array of images, load each of them into the arra
+ */
+void ofApp::loadImages(vector<string> imageURLs) {
+    string defaultImage = "images/img0.jpg";
+    for (int i = 0; i < imageArray.size(); i++) {
+        
+        string loadStr = defaultImage;
+        if (i <= (imageURLs.size() - 1)) {
+            loadStr = imageURLs[i];
+        }
+        
+        imageArray[i].load(loadStr);
+        cout << loadStr;
+    }
 }
