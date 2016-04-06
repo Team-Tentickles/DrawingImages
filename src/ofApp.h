@@ -6,13 +6,10 @@
 class ofApp : public ofBaseApp{
 
 	public:
-		ofImage imageone;
-		ofImage imagetoo;
-		ofImage imagettr;
-		ofImage imagefor;
-		float startTime;
-		float theTimeEllapsed;
-		ofParameter<float> endTime;
+        //---for the images
+        ofImage imageArray[11];
+        //---for the timer
+        float ellapsedTime;
 
 		void setup();
 		void update();
