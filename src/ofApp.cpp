@@ -25,7 +25,7 @@ void ofApp::draw(){
     //cout << ellapsedTime << endl;
     for (int m = 0; m <= 10; m++)
     {
-        imageArray[m].draw(500,500);
+        imageArray[m].draw(0,0);
     }
 }
 
