@@ -13,6 +13,7 @@ class ofApp : public ofBaseApp{
         array<ofImage, 18> imageArray;
         //---for the timer
         float ellapsedTime;
+		array<int, 18> randomTimerArray;
 
 		void setup();
 		void update();

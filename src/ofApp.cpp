@@ -12,6 +12,11 @@ void ofApp::setup()
 //    }
     vector<string> v {"images/img1.jpg"};
     loadImages(v);
+
+	for(int t = 0; t < randomTimerArray.size(); t++)
+	{
+		randomTimerArray[t] = ofRandom(4500, 5100);
+	}
 }
 
 //--------------------------------------------------------------
@@ -22,11 +27,18 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     ellapsedTime = ofGetElapsedTimeMillis();
-    //cout << ellapsedTime << endl;
-    for (int m = 0; m <= 10; m++)
-    {
-        imageArray[m].draw(0,0);
-    }
+	
+	for (int m = 0; m < imageArray.size(); m++)
+	{
+		//cout << m << endl;
+		if (ellapsedTime >= (m*randomTimerArray[m]))
+		{
+			imageArray[m].draw(m * 30, m * 40);
+			cout << m << endl;
+			//cout << ellapsedTime << endl;
+		}
+		//cout << randomTimerArray[m] << endl;
+	}
 }
 
 //--------------------------------------------------------------
