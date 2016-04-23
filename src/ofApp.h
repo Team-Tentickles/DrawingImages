@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "SubsectionImage.hpp"
 
 
 class ofApp : public ofBaseApp{
@@ -10,7 +11,7 @@ class ofApp : public ofBaseApp{
 	public:
     
         //---for the images
-        array<ofImage, 18> imageArray;
+        array<SubsectionImage, 18> imageArray;
         //---for the timer
         float ellapsedTime;
 

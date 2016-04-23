@@ -1,4 +1,5 @@
 #include "ofApp.h"
+#include "SubsectionImage.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup()
@@ -96,8 +97,10 @@ void ofApp::loadImages(vector<string> imageURLs) {
         if (i <= (imageURLs.size() - 1)) {
             loadStr = imageURLs[i];
         }
-        
+//        ofImage temp;
         imageArray[i].load(loadStr);
+        
+//        imageArray[i].init(temp);
         cout << loadStr;
     }
 }
