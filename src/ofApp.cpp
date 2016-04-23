@@ -10,7 +10,7 @@ void ofApp::setup()
 //        imageArray[m].load(im + to_string(m) + jpg);
 //        cout << im + to_string(m) + jpg;
 //    }
-    vector<string> v {"images/img1.jpg"};
+    vector<string> v {"images/Kanye.jpg"};
     loadImages(v);
 }
 
@@ -23,9 +23,9 @@ void ofApp::update(){
 void ofApp::draw(){
     ellapsedTime = ofGetElapsedTimeMillis();
     //cout << ellapsedTime << endl;
-    for (int m = 0; m <= 10; m++)
+    for (int m = 0; m < imageArray.size(); m++)
     {
-        imageArray[m].draw(0,0);
+        imageArray[m].draw(m * 125, 0);
     }
 }
 
@@ -89,7 +89,7 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
  * Given an array of images, load each of them into the arra
  */
 void ofApp::loadImages(vector<string> imageURLs) {
-    string defaultImage = "images/img0.jpg";
+    string defaultImage = "images/Kanye.jpg";
     for (int i = 0; i < imageArray.size(); i++) {
         
         string loadStr = defaultImage;
