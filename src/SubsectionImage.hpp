@@ -15,9 +15,27 @@
 class SubsectionImage : public ofImage {
     
 private:
+    int curX;
+    int curY;
+    int cropWidth;
+    int cropHeight;
+    
+    ofPoint pos;
+    
+    ofPoint translateFrom;
+    ofPoint translateTo;
+    float translateCur;
+    float translateStart;
+    float translateSpeed;
     
 public:
-    void draw(int x, int y);
+    void init(float cropWidth, float cropHeight, float cropX, float cropY);
+    void update();
+    
+    void defineTranslate(ofPoint from, ofPoint to, float duration);
+    void updateTranslate();
+    
+    void draw(float x, float y);
 };
 
 #endif /* SubsectionImage_hpp */

@@ -17,7 +17,10 @@ void ofApp::setup()
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+    for (int m = 0; m < imageArray.size(); m++)
+    {
+        imageArray[m].updateTranslate();
+    }
 }
 
 //--------------------------------------------------------------
@@ -26,7 +29,7 @@ void ofApp::draw(){
     //cout << ellapsedTime << endl;
     for (int m = 0; m < imageArray.size(); m++)
     {
-        imageArray[m].draw(m * 125, 0);
+        imageArray[m].draw(m * 225, 0);
     }
 }
 
@@ -99,6 +102,8 @@ void ofApp::loadImages(vector<string> imageURLs) {
         }
 //        ofImage temp;
         imageArray[i].load(loadStr);
+        imageArray[i].init(300, 300, 0, 0);
+        imageArray[i].defineTranslate(ofPoint(0, 0), ofPoint(50, 0), 0.01);
         
 //        imageArray[i].init(temp);
         cout << loadStr;
