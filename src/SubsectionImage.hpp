@@ -43,6 +43,7 @@ public:
     void updateTranslate2(float dt);
     
     void draw(float x, float y);
+    void draw(float x, float y, float w, float h);
 };
 
 #endif /* SubsectionImage_hpp */

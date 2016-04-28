@@ -84,6 +84,10 @@ void SubsectionImage::draw(float x, float y) {
     ofImage::drawSubsection(x, y, 200, 200, pos.x, pos.y, cropWidth, cropHeight);
 }
 
+void SubsectionImage::draw(float x, float y, float w, float h) {
+    ofImage::drawSubsection(x, y, w, h, pos.x, pos.y, cropWidth, cropHeight);
+}
+
 
 ofPoint SubsectionImage::linearEase(ofPoint from, ofPoint to, float pct) {
     ofPoint dist = to - from;

@@ -43,6 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B71F4FAF1CCFA3A8006F93AB /* Panel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Panel.hpp; sourceTree = "<group>"; };
 		B7624FA01CCC203800C723BB /* SubsectionImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SubsectionImage.cpp; sourceTree = "<group>"; };
 		B7624FA11CCC203800C723BB /* SubsectionImage.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = SubsectionImage.hpp; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -110,6 +111,7 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				B7624FA01CCC203800C723BB /* SubsectionImage.cpp */,
 				B7624FA11CCC203800C723BB /* SubsectionImage.hpp */,
+				B71F4FAF1CCFA3A8006F93AB /* Panel.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
