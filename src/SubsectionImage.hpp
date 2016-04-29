@@ -37,10 +37,8 @@ public:
     void init(float cropWidth, float cropHeight, float cropX, float cropY);
     void update();
     
-    void defineTranslate(ofPoint from, ofPoint to, float duration);
-    void defineTranslate2(ofPoint from, ofPoint to, float duration, float delay);
-    void updateTranslate();
-    void updateTranslate2(float dt);
+    void defineTranslate(ofPoint from, ofPoint to, float duration, float delay);
+    void updateTranslate(float dt);
     
     void draw(float x, float y);
     void draw(float x, float y, float w, float h);
