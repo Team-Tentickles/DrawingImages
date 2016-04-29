@@ -24,7 +24,6 @@ void SubsectionImage::init(float pcropWidth, float pcropHeight, float cropX, flo
     pos.y = cropY;
 }
 
-
 void SubsectionImage::defineTranslate(ofPoint from, ofPoint to, float duration) {
     translateStart = ofGetElapsedTimeMillis();
     translateCur = translateStart;
@@ -64,11 +63,6 @@ void SubsectionImage::updateTranslate2(float dt) {
         translatePercent = 1 - (translateEnd - translateCur) / (translateEnd - translateStart);
         if (translatePercent < 1.0f) {
             pos = bezierEaseOut(translateFrom, translateTo, translatePercent);
-//            cout << "percent: ";
-//            cout << translatePercent;
-//            cout << "\n";
-//            cout << ofGetFrameRate();
-//            cout << "\n";
         }
     }
 }

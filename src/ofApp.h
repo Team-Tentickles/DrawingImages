@@ -29,7 +29,6 @@ class ofApp : public ofBaseApp{
         Panel mainArtist1 = {450, 450};
         Panel mainArtist2 = {450, 450};
     
-    
         SubsectionImage startingArtist11Img;
         SubsectionImage startingArtist12Img;
         SubsectionImage startingArtist21Img;
@@ -48,6 +47,9 @@ class ofApp : public ofBaseApp{
     
         SubsectionImage mainArtist1Img;
         SubsectionImage mainArtist2Img;
+    
+        float curTime = 0.0;
+        float intervalTime = 20000.0;
     
 	public:
     
@@ -73,4 +75,5 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
         void loadImages(vector<string> imageURLs);
+        void resetAnimation();
 };

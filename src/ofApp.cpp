@@ -18,10 +18,7 @@ void ofApp::update(){
      * updates only happen after that initial render
      */
     if (ofGetFrameNum() > 1) {
-//        for (int m = 0; m < imageArray.size(); m++)
-//        {
-//            imageArray[m].updateTranslate2(ofGetLastFrameTime());
-//        }
+
         startingArtist11Img.updateTranslate2(ofGetLastFrameTime());
         startingArtist12Img.updateTranslate2(ofGetLastFrameTime());
         startingArtist21Img.updateTranslate2(ofGetLastFrameTime());
@@ -38,6 +35,15 @@ void ofApp::update(){
         supportingArtist4Img.updateTranslate2(ofGetLastFrameTime());
         supportingArtist5Img.updateTranslate2(ofGetLastFrameTime());
         supportingArtist6Img.updateTranslate2(ofGetLastFrameTime());
+        
+        mainArtist1Img.updateTranslate2(ofGetLastFrameTime());
+        mainArtist2Img.updateTranslate2(ofGetLastFrameTime());
+        
+        curTime += ofGetLastFrameTime() * 1000;
+        if (curTime > intervalTime) {
+            curTime = 0.0;
+            resetAnimation();
+        }
         
     }
 }
@@ -64,6 +70,9 @@ void ofApp::draw(){
     supportingArtist4Img.draw(2820, 10, supportingArtist4.width, supportingArtist4.height);
     supportingArtist5Img.draw(3130, 10, supportingArtist5.width, supportingArtist5.height);
     supportingArtist6Img.draw(3130, 320, supportingArtist6.width, supportingArtist6.height);
+    
+    mainArtist1Img.draw(3590, 10, mainArtist1.width, mainArtist1.height);
+    mainArtist2Img.draw(4050, 10, mainArtist1.width, mainArtist1.height);
 }
 
 //--------------------------------------------------------------
@@ -127,69 +136,110 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
  */
 void ofApp::loadImages(vector<string> imageURLs) {
     string defaultImage = "images/Kanye.jpg";
-//    for (int i = 0; i < imageArray.size(); i++) {
-//        string loadStr = defaultImage;
-//        if (i <= (imageURLs.size() - 1)) {
-//            loadStr = imageURLs[i];
-//        }
-//        imageArray[i].load(loadStr);
-//        imageArray[i].init(200, 200, 0, 0);
-//        imageArray[i].defineTranslate2(ofPoint(0, 0), ofPoint(60, 0), 5000, 1000);
-//    }
     startingArtist11Img.load(defaultImage);
     startingArtist11Img.init(200, 200, 0, 0);
     startingArtist11Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 1500);
     
     startingArtist12Img.load(defaultImage);
     startingArtist12Img.init(200, 200, 0, 0);
-    startingArtist12Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 10), 2000, 2500);
+    startingArtist12Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 2500);
     
     startingArtist21Img.load(defaultImage);
     startingArtist21Img.init(200, 200, 0, 0);
-    startingArtist21Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 10), 2000, 3500);
+    startingArtist21Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 3500);
     
     startingArtist22Img.load(defaultImage);
     startingArtist22Img.init(200, 200, 0, 0);
-    startingArtist22Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 10), 2000, 4500);
+    startingArtist22Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 4500);
     
     startingAlbum11Img.load(defaultImage);
     startingAlbum11Img.init(200, 200, 0, 0);
-    startingAlbum11Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 5500);
+    startingAlbum11Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 10), 2000, 5500);
     
     startingAlbum12Img.load(defaultImage);
     startingAlbum12Img.init(200, 200, 0, 0);
-    startingArtist12Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 6500);
+    startingAlbum12Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 10), 2000, 6500);
     
     startingAlbum21Img.load(defaultImage);
-    startingArtist21Img.init(200, 200, 0, 0);
-    startingArtist21Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 7500);
+    startingAlbum21Img.init(200, 200, 0, 0);
+    startingAlbum21Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 10), 2000, 7500);
     
     startingAlbum22Img.load(defaultImage);
-    startingArtist22Img.init(200, 200, 0, 0);
-    startingArtist22Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 8500);
+    startingAlbum22Img.init(200, 200, 0, 0);
+    startingAlbum22Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 10), 2000, 8500);
     
     supportingArtist1Img.load(defaultImage);
     supportingArtist1Img.init(200, 200, 0, 0);
-    supportingArtist1Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 1500);
+    supportingArtist1Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 9500);
     
     supportingArtist2Img.load(defaultImage);
     supportingArtist2Img.init(200, 200, 0, 0);
-    supportingArtist2Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 1500);
+    supportingArtist2Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 10500);
     
     supportingArtist3Img.load(defaultImage);
     supportingArtist3Img.init(200, 200, 0, 0);
-    supportingArtist3Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 1500);
+    supportingArtist3Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 11500);
     
     supportingArtist4Img.load(defaultImage);
     supportingArtist4Img.init(200, 200, 0, 0);
-    supportingArtist4Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 1500);
+    supportingArtist4Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 12500);
     
     supportingArtist5Img.load(defaultImage);
     supportingArtist5Img.init(200, 200, 0, 0);
-    supportingArtist5Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 1500);
+    supportingArtist5Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 13500);
     
     supportingArtist6Img.load(defaultImage);
     supportingArtist6Img.init(200, 200, 0, 0);
-    supportingArtist6Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 1500);
+    supportingArtist6Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 14500);
     
+    mainArtist1Img.load(defaultImage);
+    mainArtist1Img.init(200, 200, 0, 0);
+    mainArtist1Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 15500);
+    
+    mainArtist2Img.load(defaultImage);
+    mainArtist2Img.init(200, 200, 0, 0);
+    mainArtist2Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 16500);
+}
+
+void ofApp::resetAnimation() {
+    
+    // reset to default
+    startingArtist11Img.init(200, 200, 0, 0);
+    startingArtist12Img.init(200, 200, 0, 0);
+    startingArtist21Img.init(200, 200, 0, 0);
+    startingArtist22Img.init(200, 200, 0, 0);
+    startingAlbum11Img.init(200, 200, 0, 0);
+    startingAlbum12Img.init(200, 200, 0, 0);
+    startingAlbum21Img.init(200, 200, 0, 0);
+    startingAlbum22Img.init(200, 200, 0, 0);
+    
+    supportingArtist1Img.init(200, 200, 0, 0);
+    supportingArtist2Img.init(200, 200, 0, 0);
+    supportingArtist3Img.init(200, 200, 0, 0);
+    supportingArtist4Img.init(200, 200, 0, 0);
+    supportingArtist5Img.init(200, 200, 0, 0);
+    supportingArtist6Img.init(200, 200, 0, 0);
+    
+    mainArtist1Img.init(200, 200, 0, 0);
+    mainArtist2Img.init(200, 200, 0, 0);
+    
+    // perform the animation
+    startingArtist11Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 1500);
+    startingArtist12Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 2500);
+    startingArtist21Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 3500);
+    startingArtist22Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 4500);
+    startingAlbum11Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 10), 2000, 5500);
+    startingAlbum12Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 10), 2000, 6500);
+    startingAlbum21Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 10), 2000, 7500);
+    startingAlbum22Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 10), 2000, 8500);
+    
+    supportingArtist1Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 9500);
+    supportingArtist2Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 10500);
+    supportingArtist3Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 11500);
+    supportingArtist4Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 12500);
+    supportingArtist5Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 13500);
+    supportingArtist6Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 14500);
+    
+    mainArtist1Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 15500);
+    mainArtist2Img.defineTranslate2(ofPoint(0, 0), ofPoint(100, 100), 2000, 16500);
 }
