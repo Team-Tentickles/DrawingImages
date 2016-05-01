@@ -135,7 +135,7 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
  * Given an array of images, load each of them into the arra
  */
 void ofApp::loadImages(vector<string> imageURLs) {
-    string defaultImage = "images/Kanye.jpg";
+    string defaultImage = "images/default.jpg";
     startingArtist11Img.load(defaultImage);
     startingArtist11Img.init(200, 200, 0, 0);
     startingArtist11Img.defineTranslate(ofPoint(0, 0), ofPoint(100, 100), 2000, 1500);

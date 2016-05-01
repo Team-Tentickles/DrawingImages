@@ -29,6 +29,14 @@ class ofApp : public ofBaseApp{
         Panel mainArtist1 = {450, 450};
         Panel mainArtist2 = {450, 450};
     
+        float curTime = 0.0;
+        float intervalTime = 20000.0;
+    
+	public:
+    
+        //---for the images
+        array<SubsectionImage, 18> imageArray;
+    
         SubsectionImage startingArtist11Img;
         SubsectionImage startingArtist12Img;
         SubsectionImage startingArtist21Img;
@@ -37,24 +45,17 @@ class ofApp : public ofBaseApp{
         SubsectionImage startingAlbum12Img;
         SubsectionImage startingAlbum21Img;
         SubsectionImage startingAlbum22Img;
-    
+        
         SubsectionImage supportingArtist1Img;
         SubsectionImage supportingArtist2Img;
         SubsectionImage supportingArtist3Img;
         SubsectionImage supportingArtist4Img;
         SubsectionImage supportingArtist5Img;
         SubsectionImage supportingArtist6Img;
-    
+        
         SubsectionImage mainArtist1Img;
         SubsectionImage mainArtist2Img;
     
-        float curTime = 0.0;
-        float intervalTime = 20000.0;
-    
-	public:
-    
-        //---for the images
-        array<SubsectionImage, 18> imageArray;
         //---for the timer
         float ellapsedTime;
 
