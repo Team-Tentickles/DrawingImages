@@ -29,9 +29,6 @@ class ofApp : public ofBaseApp{
         Panel mainArtist1 = {450, 450};
         Panel mainArtist2 = {450, 450};
     
-    
-        ofVideoPlayer defaultVideo;
-    
         float curTime = 0.0;
         float intervalTime = 20000.0;
     

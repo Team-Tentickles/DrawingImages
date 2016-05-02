@@ -33,8 +33,6 @@ private:
     ofPoint linearEase(ofPoint from, ofPoint to, float pct);
     ofPoint bezierEaseOut(ofPoint from, ofPoint to, float pct);
     
-    ofVideoPlayer *defaultVideo = NULL;
-    
 public:
     void init(float cropWidth, float cropHeight, float cropX, float cropY);
     void update();
@@ -44,7 +42,6 @@ public:
     
     void draw(float x, float y);
     void draw(float x, float y, float w, float h);
-    void setDefaultVideo(ofVideoPlayer v);
 };
 
 #endif /* SubsectionImage_hpp */
