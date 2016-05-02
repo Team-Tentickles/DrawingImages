@@ -75,6 +75,9 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-        void loadImages(vector<string> imageURLs);
+        void loadImages();
+        void initImages();
+        void defineAnimations();
+    
         void resetAnimation();
 };

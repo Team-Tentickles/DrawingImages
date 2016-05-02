@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "ofMain.h"
+#include "Animation.h";
 
 class SubsectionImage : public ofImage {
     
@@ -22,14 +23,10 @@ private:
     
     ofPoint pos;
     
-    ofPoint translateFrom;
-    ofPoint translateTo;
-    float translateCur;
-    float translateStart;
-    float translateEnd;
-    float translatePercent;
-    float translateSpeed;
-    
+    Animation translate;
+    Animation zoom;
+    Animation opacity;
+
     ofPoint linearEase(ofPoint from, ofPoint to, float pct);
     ofPoint bezierEaseOut(ofPoint from, ofPoint to, float pct);
     
@@ -39,6 +36,9 @@ public:
     
     void defineTranslate(ofPoint from, ofPoint to, float duration, float delay);
     void updateTranslate(float dt);
+    
+    void defineZoom(ofPoint from, ofPoint to, float duration, float delay);
+    void updateZoom(float dt);
     
     void draw(float x, float y);
     void draw(float x, float y, float w, float h);

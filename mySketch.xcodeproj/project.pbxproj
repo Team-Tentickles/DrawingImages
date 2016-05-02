@@ -46,6 +46,7 @@
 		B71F4FAF1CCFA3A8006F93AB /* Panel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Panel.hpp; sourceTree = "<group>"; };
 		B7624FA01CCC203800C723BB /* SubsectionImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SubsectionImage.cpp; sourceTree = "<group>"; };
 		B7624FA11CCC203800C723BB /* SubsectionImage.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = SubsectionImage.hpp; sourceTree = "<group>"; };
+		B7754F6C1CD6E3B000A14F8F /* Animation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E4B69B5B0A3A1756003C02F2 /* mySketchDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mySketchDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
@@ -112,6 +113,7 @@
 				B7624FA01CCC203800C723BB /* SubsectionImage.cpp */,
 				B7624FA11CCC203800C723BB /* SubsectionImage.hpp */,
 				B71F4FAF1CCFA3A8006F93AB /* Panel.hpp */,
+				B7754F6C1CD6E3B000A14F8F /* Animation.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
