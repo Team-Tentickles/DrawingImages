@@ -7,6 +7,9 @@ void ofApp::setup()
     ofSetFrameRate(60);
     vector<string> v {"images/Kanye.jpg"};
     loadImages(v);
+    defaultVideo.load("images/default.mp4");
+    defaultVideo.setLoopState(OF_LOOP_NORMAL);
+    defaultVideo.play();
 }
 
 //--------------------------------------------------------------
@@ -23,7 +26,7 @@ void ofApp::update(){
         startingArtist12Img.updateTranslate(ofGetLastFrameTime());
         startingArtist21Img.updateTranslate(ofGetLastFrameTime());
         startingArtist22Img.updateTranslate(ofGetLastFrameTime());
-        
+//
         startingAlbum11Img.updateTranslate(ofGetLastFrameTime());
         startingAlbum12Img.updateTranslate(ofGetLastFrameTime());
         startingAlbum21Img.updateTranslate(ofGetLastFrameTime());
@@ -42,8 +45,9 @@ void ofApp::update(){
         curTime += ofGetLastFrameTime() * 1000;
         if (curTime > intervalTime) {
             curTime = 0.0;
-            resetAnimation();
+//            resetAnimation();
         }
+        defaultVideo.update();
         
     }
 }
@@ -58,7 +62,7 @@ void ofApp::draw(){
     startingArtist12Img.draw(420, 10, startingArtist12.width, startingArtist12.height);
     startingArtist21Img.draw(1030, 10, startingArtist21.width, startingArtist21.height);
     startingArtist22Img.draw(1440, 10, startingArtist22.width, startingArtist22.height);
-    
+
     startingAlbum11Img.draw(420, 420, startingAlbum11.width, startingAlbum11.height);
     startingAlbum12Img.draw(630, 420, startingAlbum12.width, startingAlbum12.height);
     startingAlbum21Img.draw(1440, 420, startingAlbum21.width, startingAlbum21.height);
@@ -139,23 +143,25 @@ void ofApp::loadImages(vector<string> imageURLs) {
     startingArtist11Img.load(defaultImage);
     startingArtist11Img.init(200, 200, 0, 0);
     startingArtist11Img.defineTranslate(ofPoint(0, 0), ofPoint(100, 100), 2000, 1500);
+    startingArtist11Img.setDefaultVideo(defaultVideo);
     
     startingArtist12Img.load(defaultImage);
     startingArtist12Img.init(200, 200, 0, 0);
     startingArtist12Img.defineTranslate(ofPoint(0, 0), ofPoint(100, 100), 2000, 2500);
-    
+//    startingArtist12Img.setDefaultVideo(defaultVideo);
+
     startingArtist21Img.load(defaultImage);
     startingArtist21Img.init(200, 200, 0, 0);
     startingArtist21Img.defineTranslate(ofPoint(0, 0), ofPoint(100, 100), 2000, 3500);
-    
+//
     startingArtist22Img.load(defaultImage);
     startingArtist22Img.init(200, 200, 0, 0);
     startingArtist22Img.defineTranslate(ofPoint(0, 0), ofPoint(100, 100), 2000, 4500);
-    
+//
     startingAlbum11Img.load(defaultImage);
     startingAlbum11Img.init(200, 200, 0, 0);
     startingAlbum11Img.defineTranslate(ofPoint(0, 0), ofPoint(100, 10), 2000, 5500);
-    
+//
     startingAlbum12Img.load(defaultImage);
     startingAlbum12Img.init(200, 200, 0, 0);
     startingAlbum12Img.defineTranslate(ofPoint(0, 0), ofPoint(100, 10), 2000, 6500);

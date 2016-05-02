@@ -20,6 +20,8 @@ void SubsectionImage::init(float pcropWidth, float pcropHeight, float cropX, flo
     cropWidth = pcropWidth;
     cropHeight = pcropHeight;
     
+
+    
     pos.x = cropX;
     pos.y = cropY;
 }
@@ -62,6 +64,12 @@ void SubsectionImage::update() {
 }
 
 
+void SubsectionImage::setDefaultVideo(ofVideoPlayer v) {
+    cout << "set\n";
+    defaultVideo = &v;
+}
+
+
 /**
  * Draws a subsection of the image at the specified x and y coordinates on the window,
  * with the specified width and height and at the current crop position of the plot.
@@ -76,7 +84,10 @@ void SubsectionImage::draw(float x, float y) {
  * and at the current crop position of the plot.
  */
 void SubsectionImage::draw(float x, float y, float w, float h) {
-    ofImage::drawSubsection(x, y, w, h, pos.x, pos.y, cropWidth, cropHeight);
+//    ofImage::drawSubsection(x, y, w, h, pos.x, pos.y, cropWidth, cropHeight);
+    if (defaultVideo != NULL) {
+        defaultVideo->draw(x, y, w, h);
+    }
 }
 
 
