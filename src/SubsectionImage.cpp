@@ -23,6 +23,7 @@ void SubsectionImage::init(float pcropWidth, float pcropHeight, float cropX, flo
     width = 0;
     height = 0;
     
+    alpha.x = 255;
     pos.x = cropX;
     pos.y = cropY;
 }
@@ -61,6 +62,22 @@ void SubsectionImage::defineZoom(ofPoint from, ofPoint to, float duration, float
 
 
 /**
+ * Define an opacity animation. The User enters in the point they want to start the
+ * animation at, then enters the point they want to ove to. They specify how long they
+ * want the animation to last, and can enter a delay that says how long they want to
+ * wait before that animation is executed (0 would mean it starts instantaneously.
+ */
+void SubsectionImage::defineOpacity(ofPoint from, ofPoint to, float duration, float delay) {
+    opacity.from = from;
+    opacity.to = to;
+    opacity.start = ofGetElapsedTimef() + (delay / 1000);
+    opacity.current = ofGetElapsedTimef() + (delay / 1000);
+    opacity.end = translate.start + duration;
+    opacity.percent = 0.0f;
+}
+
+
+/**
  * updates an ongoing translate animation. It adds an amount to the position of the 
  * image based on an the change in time and the specified duration
  */
@@ -77,12 +94,12 @@ void SubsectionImage::updateTranslate(float dt) {
 
 
 /**
- * updates an ongoing translate animation. It adds an amount to the position of the
+ * updates an ongoing zoom animation. It increases the width and height of the
  * image based on an the change in time and the specified duration
  */
 void SubsectionImage::updateZoom(float dt) {
     // convert the current time to a percent of completion
-    if (ofGetElapsedTimef() >= translate.start) {
+    if (ofGetElapsedTimef() >= zoom.start) {
         zoom.current += dt * 1000;
         zoom.percent = 1 - (zoom.end - zoom.current) / (zoom.end - zoom.start);
         if (zoom.percent < 1.0f) {
@@ -93,9 +110,29 @@ void SubsectionImage::updateZoom(float dt) {
     }
 }
 
+/**
+ * updates an ongoing opacity animation. It modifies the opacity of the image
+ * based on the change in time and the specified duration.
+ */
+void SubsectionImage::updateOpacity(float dt) {
+    // convert the current time to a percent of completion
+    if (ofGetElapsedTimef() >= opacity.start) {
+        opacity.current += dt * 1000;
+        opacity.percent = 1 - (opacity.end - opacity.current) / (opacity.end - opacity.start);
+        if (opacity.percent < 1.0f) {
+            alpha = bezierEaseOut(opacity.from, opacity.to, opacity.percent);
+        }
+    }
+}
 
 
+/**
+ * Update all animations
+ */
 void SubsectionImage::update() {
+    updateTranslate(ofGetLastFrameTime());
+    updateOpacity(ofGetLastFrameTime());
+    updateZoom(ofGetLastFrameTime());
 }
 
 
@@ -104,7 +141,10 @@ void SubsectionImage::update() {
  * with the specified width and height and at the current crop position of the plot.
  */
 void SubsectionImage::draw(float x, float y) {
+    ofEnableAlphaBlending();
+    ofSetColor(ofColor(255, 255, 255, alpha.x));
     ofImage::drawSubsection(x, y, width, height, pos.x, pos.y, cropWidth, cropHeight);
+    ofDisableAlphaBlending();
 }
 
 

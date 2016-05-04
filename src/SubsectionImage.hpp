@@ -22,6 +22,7 @@ private:
     int cropHeight;
     
     ofPoint pos;
+    ofPoint alpha;
     
     Animation translate;
     Animation zoom;
@@ -39,6 +40,9 @@ public:
     
     void defineZoom(ofPoint from, ofPoint to, float duration, float delay);
     void updateZoom(float dt);
+    
+    void defineOpacity(ofPoint from, ofPoint to, float duration, float delay);
+    void updateOpacity(float dt);
     
     void draw(float x, float y);
     void draw(float x, float y, float w, float h);

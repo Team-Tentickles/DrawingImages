@@ -30,7 +30,7 @@ class ofApp : public ofBaseApp{
         Panel mainArtist2 = {450, 450};
     
         float curTime = 0.0;
-        float intervalTime = 20000.0;
+        float intervalTime = 30000.0;
     
 	public:
     
@@ -77,7 +77,9 @@ class ofApp : public ofBaseApp{
     
         void loadImages();
         void initImages();
-        void defineAnimations();
+        void defineAnimations(float duration, float delay);
+    
+        void setupFadeZoomAnimation(SubsectionImage img);
     
         void resetAnimation();
 };
