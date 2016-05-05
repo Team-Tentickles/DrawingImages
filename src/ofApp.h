@@ -29,8 +29,19 @@ class ofApp : public ofBaseApp{
         Panel mainArtist1 = {450, 450};
         Panel mainArtist2 = {450, 450};
     
+        float colorPct = 0.0;
+        ofColor idle1 = {141,82,224};
+        ofColor idle2 = {247,24,108};
+        ofColor curColor = idle1;
+    
         float curTime = 0.0;
         float intervalTime = 30000.0;
+    
+        bool drawArtists = true;
+        void drawArtistImages();
+        void drawIdle();
+    
+        void updateColor(ofColor starting, ofColor target);
     
 	public:
     

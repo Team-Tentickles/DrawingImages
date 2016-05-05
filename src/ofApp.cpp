@@ -72,6 +72,7 @@ void ofApp::update(){
 //        mainArtist2Img.updateTranslate(ofGetLastFrameTime());
 //        mainArtist2Img.updateZoom(ofGetLastFrameTime());
         
+        updateColor(idle1, idle2);
         
         startingArtist11Img.update();
         startingArtist12Img.update();
@@ -104,6 +105,18 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+//    cout << "drawing\n";
+    drawIdle();
+    if (drawArtists) {
+        drawArtistImages();
+    }
+}
+
+
+/**
+ * Draw the Artist Images
+ */
+void ofApp::drawArtistImages() {
     startingArtist11Img.draw(10, 10);
     startingArtist12Img.draw(420, 10);
     startingArtist21Img.draw(1030, 10);
@@ -124,6 +137,37 @@ void ofApp::draw(){
     mainArtist1Img.draw(3590, 10);
     mainArtist2Img.draw(4050, 10);
 }
+
+
+/**
+ * Draw the idle animation
+ */
+void ofApp::drawIdle() {
+    ofSetColor(curColor);
+    ofSetBackgroundColor(curColor);
+//    ofFill();
+    
+    ofDrawRectangle(10, 10, startingArtist11.width, startingArtist11.height);
+    ofDrawRectangle(420, 10, startingArtist12.width, startingArtist12.height);
+    ofDrawRectangle(1030, 10, startingArtist21.width, startingArtist21.height);
+    ofDrawRectangle(1440, 10, startingArtist22.width, startingArtist22.height);
+    
+    ofDrawRectangle(420, 420, startingAlbum11.width, startingAlbum11.height);
+    ofDrawRectangle(630, 420, startingAlbum12.width, startingAlbum12.height);
+    ofDrawRectangle(1440, 420, startingAlbum21.width, startingAlbum21.height);
+    ofDrawRectangle(1650, 420, startingAlbum22.width, startingAlbum22.height);
+    
+    ofDrawRectangle(2050, 10, supportingArtist1.width, supportingArtist1.height);
+    ofDrawRectangle(2510, 10, supportingArtist2.width, supportingArtist2.height);
+    ofDrawRectangle(2050, 320, supportingArtist3.width, supportingArtist3.height);
+    ofDrawRectangle(2820, 10, supportingArtist4.width, supportingArtist4.height);
+    ofDrawRectangle(3130, 10, supportingArtist5.width, supportingArtist5.height);
+    ofDrawRectangle(3130, 320, supportingArtist6.width, supportingArtist6.height);
+    
+    ofDrawRectangle(3590, 10, mainArtist1.width, mainArtist1.height);
+    ofDrawRectangle(4050, 10, mainArtist2.width, mainArtist2.height);
+}
+
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
@@ -231,6 +275,11 @@ void ofApp::loadImages() {
 }
 
 
+/**
+ * Defines the animations for all of the images on the spire. The user can
+ * define the length of the animation for each iamge as well as the delay
+ * between each. The animations will be staggered accordingly
+ */
 void ofApp::defineAnimations(float duration, float delay) {
     
     // LEVEL ONE OF THE SPIRE
@@ -299,8 +348,32 @@ void ofApp::defineAnimations(float duration, float delay) {
     mainArtist1Img.defineOpacity(ofPoint(0), ofPoint(255), duration, delay * 17 + 500);
     
     mainArtist2Img.defineTranslate(ofPoint(0, 0), ofPoint(0, 100), duration * 15, delay * 18 + 500);
-    mainArtist2Img.defineZoom(ofPoint(0, 0), ofPoint(mainArtist2.width, startingArtist11.height), duration, delay * 18 + 500);
+    mainArtist2Img.defineZoom(ofPoint(0, 0), ofPoint(mainArtist2.width, mainArtist2.height), duration, delay * 18 + 500);
     mainArtist2Img.defineOpacity(ofPoint(0), ofPoint(255), duration, delay * 18 + 500);
+    
+    
+    // FADE IMAGES OUT AT THE END
+    startingArtist11Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
+    startingArtist12Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
+    startingArtist21Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
+    startingArtist22Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
+    
+    startingAlbum11Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
+    startingAlbum12Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
+    startingAlbum21Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
+    startingAlbum22Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
+    
+    supportingArtist1Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
+    supportingArtist2Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
+    supportingArtist3Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
+    supportingArtist4Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
+    supportingArtist5Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
+    supportingArtist6Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
+    
+    mainArtist1Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
+    mainArtist2Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
+ 
+    intervalTime = delay * 50 + 500 + duration;
 }
 
 
@@ -313,5 +386,17 @@ void ofApp::resetAnimation() {
     
     // reset to default
     initImages();
-    defineAnimations(1000, 1000);
+    defineAnimations(3000, 1000);
 }
+
+
+/**
+ * Update the color of the rectangles
+ */
+void ofApp::updateColor(ofColor starting, ofColor target) {
+    float curPct = abs(sin(ofGetElapsedTimef() / 4));
+    curColor = starting.lerp(target, curPct);
+}
+
+
+
