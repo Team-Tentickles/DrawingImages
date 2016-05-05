@@ -103,8 +103,20 @@ void SubsectionImage::defineTranslate(ofPoint from, ofPoint to, float duration, 
     translate.current = ofGetElapsedTimef() + (delay / 1000);
     translate.end = translate.start + duration;
     translate.percent = 0.0f;
+    translateComplete = false;
 }
 
+/**
+ * Define a translation animation. The User enters in the point they want to start the
+ * animation at, then enters the point they want to ove to. They specify how long they
+ * want the animation to last, and can enter a delay that says how long they want to
+ * wait before that animation is executed (0 would mean it starts instantaneously. This
+ * variation registers a function that will be called on completion
+ */
+void SubsectionImage::defineTranslate(ofPoint from, ofPoint to, float duration, float delay, ofEvent<string> & onComplete) {
+    translateCallback = onComplete;
+    defineTranslate(from, to, duration, delay);
+}
 
 /**
  * Define a zoom animation. The User enters in the point they want to start the
@@ -119,6 +131,7 @@ void SubsectionImage::defineZoom(ofPoint from, ofPoint to, float duration, float
     zoom.current = ofGetElapsedTimef() + (delay / 1000);
     zoom.end = translate.start + duration;
     zoom.percent = 0.0f;
+    zoomComplete = false;
 }
 
 
@@ -126,7 +139,8 @@ void SubsectionImage::defineZoom(ofPoint from, ofPoint to, float duration, float
  * Define an opacity animation. The User enters in the point they want to start the
  * animation at, then enters the point they want to ove to. They specify how long they
  * want the animation to last, and can enter a delay that says how long they want to
- * wait before that animation is executed (0 would mean it starts instantaneously.
+ * wait before that animation is executed (0 would mean it starts instantaneously. This
+ * variation registers a function that will be called on completion
  */
 void SubsectionImage::defineOpacity(ofPoint from, ofPoint to, float duration, float delay) {
     opacity.from = from;
@@ -135,6 +149,19 @@ void SubsectionImage::defineOpacity(ofPoint from, ofPoint to, float duration, fl
     opacity.current = ofGetElapsedTimef() + (delay / 1000);
     opacity.end = translate.start + duration;
     opacity.percent = 0.0f;
+    opacityComplete = false;
+}
+
+
+/**
+  * Define an opacity animation. The User enters in the point they want to start the
+  * animation at, then enters the point they want to ove to. They specify how long they
+  * want the animation to last, and can enter a delay that says how long they want to
+  * wait before that animation is executed (0 would mean it starts instantaneously.
+  */
+void SubsectionImage::defineOpacity(ofPoint from, ofPoint to, float duration, float delay, ofEvent<string> & onComplete) {
+    opacityCallback.push_back(&onComplete);
+    defineOpacity(from, to, duration, delay);
 }
 
 
@@ -150,6 +177,13 @@ void SubsectionImage::updateTranslate(float dt) {
         if (translate.percent < 1.0f) {
             pos = bezierEaseOut(translate.from, translate.to, translate.percent);
         }
+//        else {
+////            if (!translateComplete) {
+////                translateComplete = true;
+////                string msg = "animation complete";
+////                ofNotifyEvent(translateCallback, msg, this);
+//            }
+//        }
     }
 }
 
@@ -167,6 +201,18 @@ void SubsectionImage::updateZoom(float dt) {
             ofPoint dim = bezierEaseOut(zoom.from, zoom.to, zoom.percent);
             zoomWidth = dim.x;
             zoomHeight = dim.y;
+        } else {
+            if (!zoomComplete) {
+                zoomComplete = true;
+                string msg = "animation complete";
+//                ofNotifyEvent(zoomCallback, msg, this);
+//                zoomCallback = nullptr;
+                for (int i = 0; i < zoomCallback.size(); i++) {
+                    cout << msg;
+                    ofNotifyEvent(*zoomCallback[i], msg, this);
+                }
+                zoomCallback.clear();
+            }
         }
     }
 }
@@ -182,6 +228,17 @@ void SubsectionImage::updateOpacity(float dt) {
         opacity.percent = 1 - (opacity.end - opacity.current) / (opacity.end - opacity.start);
         if (opacity.percent < 1.0f) {
             alpha = bezierEaseOut(opacity.from, opacity.to, opacity.percent);
+        } else {
+            if (!opacityComplete) {
+                cout << opacityComplete << "\n";
+                opacityComplete = true;
+                string msg = "opacity complete";
+                for (int i = 0; i < opacityCallback.size(); i++) {
+//                    cout << msg;
+                    ofNotifyEvent(*opacityCallback[i], msg, this);
+                }
+                opacityCallback.clear();
+            }
         }
     }
 }

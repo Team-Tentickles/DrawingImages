@@ -41,6 +41,11 @@ class ofApp : public ofBaseApp{
         void drawArtistImages();
         void drawIdle();
     
+        ofEvent<string> dataReceived;
+    
+        void onArtistAnimationComplete(string & evtString);
+    
+        void defineFadeOut(float duration, float delay);
         void updateColor(ofColor starting, ofColor target);
     
 	public:
@@ -92,5 +97,6 @@ class ofApp : public ofBaseApp{
     
         void setupFadeZoomAnimation(SubsectionImage img);
     
-        void resetAnimation();
+    void resetAnimation();
+    ofEvent<string> animationDone;
 };

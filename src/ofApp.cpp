@@ -7,6 +7,7 @@ void ofApp::setup()
     ofSetFrameRate(60);
     loadImages();
     resetAnimation();
+    ofAddListener(animationDone, this, &ofApp::onArtistAnimationComplete);
 }
 
 //--------------------------------------------------------------
@@ -94,11 +95,11 @@ void ofApp::update(){
         mainArtist1Img.update();
         mainArtist2Img.update();
         
-        curTime += ofGetLastFrameTime() * 1000;
-        if (curTime > intervalTime) {
-            curTime = 0.0;
-            resetAnimation();
-        }
+//        curTime += ofGetLastFrameTime() * 1000;
+//        if (curTime > intervalTime) {
+//            curTime = 0.0;
+//            resetAnimation();
+//        }
         
     }
 }
@@ -110,6 +111,16 @@ void ofApp::draw(){
     if (drawArtists) {
         drawArtistImages();
     }
+}
+
+
+/**
+ * When the artist animation has completed, this event is
+ * called to fade the images out.
+ */
+void ofApp::onArtistAnimationComplete(string & evtString) {
+    cout << "event called: " << evtString << "\n";
+    defineFadeOut(1000, 0);
 }
 
 
@@ -350,37 +361,40 @@ void ofApp::defineAnimations(float duration, float delay) {
     
     mainArtist2Img.defineTranslate(ofPoint(0, 0), ofPoint(0, 100), duration * 15, delay * 18 + 500);
     mainArtist2Img.defineZoom(ofPoint(0, 0), ofPoint(mainArtist2.width, mainArtist2.height), duration, delay * 18 + 500);
-    mainArtist2Img.defineOpacity(ofPoint(0), ofPoint(255), duration, delay * 18 + 500);
-    
-    
-    // FADE IMAGES OUT AT THE END
-    startingArtist11Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
-    startingArtist12Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
-    startingArtist21Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
-    startingArtist22Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
-    
-    startingAlbum11Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
-    startingAlbum12Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
-    startingAlbum21Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
-    startingAlbum22Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
-    
-    supportingArtist1Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
-    supportingArtist2Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
-    supportingArtist3Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
-    supportingArtist4Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
-    supportingArtist5Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
-    supportingArtist6Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
-    
-    mainArtist1Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
-    mainArtist2Img.defineOpacity(ofPoint(255), ofPoint(0), duration / 2, delay * 50 + 500);
+    mainArtist2Img.defineOpacity(ofPoint(0), ofPoint(255), duration, delay * 18 + 500, animationDone);
+
  
     intervalTime = delay * 50 + 500 + duration;
 }
 
 
-void setupFadeZoomAnimation(SubsectionImage img) {
+/**
+ * Defines the effect where the artists fade out.
+ */
+void ofApp::defineFadeOut(float duration, float delay) {
     
-}
+    cout << "defining fade out\n";
+    // FADE IMAGES OUT AT THE END
+    startingArtist11Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+    startingArtist12Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+    startingArtist21Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+    startingArtist22Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+    
+    startingAlbum11Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+    startingAlbum12Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+    startingAlbum21Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+    startingAlbum22Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+    
+    supportingArtist1Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+    supportingArtist2Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+    supportingArtist3Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+    supportingArtist4Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+    supportingArtist5Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+    supportingArtist6Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+    
+    mainArtist1Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+    mainArtist2Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+};
 
 
 void ofApp::resetAnimation() {

@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include "ofMain.h"
-#include "Animation.h";
+#include "Animation.h"
 
 class SubsectionImage : public ofImage {
     
@@ -40,6 +40,15 @@ private:
     ofPoint linearEase(ofPoint from, ofPoint to, float pct);
     ofPoint bezierEaseOut(ofPoint from, ofPoint to, float pct);
     
+    bool opacityComplete;
+    vector< ofEvent<string>* > opacityCallback;
+    
+    bool translateComplete;
+    ofEvent<string> translateCallback;
+    
+    bool zoomComplete;
+    vector< ofEvent<string>* > zoomCallback;
+    
     float getScaleFactor(float from, float to);
     
 public:
@@ -48,12 +57,15 @@ public:
     void update();
     
     void defineTranslate(ofPoint from, ofPoint to, float duration, float delay);
+    void defineTranslate(ofPoint from, ofPoint to, float duration, float delay, ofEvent<string> & onComplete);
     void updateTranslate(float dt);
     
     void defineZoom(ofPoint from, ofPoint to, float duration, float delay);
+    void defineZoom(ofPoint from, ofPoint to, float duration, float delay, ofEvent<string> & onComplete);
     void updateZoom(float dt);
     
     void defineOpacity(ofPoint from, ofPoint to, float duration, float delay);
+    void defineOpacity(ofPoint from, ofPoint to, float duration, float delay, ofEvent<string> & onComplete);
     void updateOpacity(float dt);
     
     void draw(float x, float y);
