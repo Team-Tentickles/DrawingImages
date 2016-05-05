@@ -230,20 +230,21 @@ void ofApp::initImages() {
     startingArtist12Img.init(startingArtist12.width, startingArtist12.height, 0, 0);
     startingArtist21Img.init(startingArtist21.width, startingArtist21.height, 0, 0);
     startingArtist22Img.init(startingArtist22.width, startingArtist22.height, 0, 0);
-    startingAlbum11Img.init(200, 200, 0, 0);
-    startingAlbum12Img.init(200, 200, 0, 0);
-    startingAlbum21Img.init(200, 200, 0, 0);
-    startingAlbum22Img.init(200, 200, 0, 0);
     
-    supportingArtist1Img.init(200, 200, 0, 0);
-    supportingArtist2Img.init(200, 200, 0, 0);
-    supportingArtist3Img.init(200, 200, 0, 0);
-    supportingArtist4Img.init(200, 200, 0, 0);
-    supportingArtist5Img.init(200, 200, 0, 0);
-    supportingArtist6Img.init(200, 200, 0, 0);
+    startingAlbum11Img.init(startingAlbum11.width, startingAlbum11.height, 0, 0);
+    startingAlbum12Img.init(startingAlbum12.width, startingAlbum12.height, 0, 0);
+    startingAlbum21Img.init(startingAlbum21.width, startingAlbum21.height, 0, 0);
+    startingAlbum22Img.init(startingAlbum22.width, startingAlbum22.height, 0, 0);
     
-    mainArtist1Img.init(200, 200, 0, 0);
-    mainArtist2Img.init(200, 200, 0, 0);
+    supportingArtist1Img.init(supportingArtist1.width, supportingArtist1.height, 0, 0);
+    supportingArtist2Img.init(supportingArtist2.width, supportingArtist2.height, 0, 0);
+    supportingArtist3Img.init(supportingArtist3.width, supportingArtist3.height, 0, 0);
+    supportingArtist4Img.init(supportingArtist4.width, supportingArtist4.height, 0, 0);
+    supportingArtist5Img.init(supportingArtist5.width, supportingArtist5.height, 0, 0);
+    supportingArtist6Img.init(supportingArtist6.width, supportingArtist6.height, 0, 0);
+    
+    mainArtist1Img.init(mainArtist1.width, mainArtist1.height, 0, 0);
+    mainArtist2Img.init(mainArtist1.width, mainArtist2.height, 0, 0);
 }
 
 

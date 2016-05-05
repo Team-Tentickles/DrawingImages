@@ -33,39 +33,51 @@ void SubsectionImage::init(float sectionWidth, float sectionHeight, float cropX,
     float actualWidth = initialWidth;
     float actualHeight = initialHeight;
     
-    width = 0;
-    height = 0;
+    zoomWidth = 0;
+    zoomHeight = 0;
     
     bool wider = actualWidth > sectionWidth;
     bool taller = actualHeight > sectionHeight;
     
-    cout << getScaleFactor(sectionWidth, actualWidth);
-    cout << "\n";
-    cout << getScaleFactor(sectionHeight, actualHeight);
-    cout << "\n";
-    
     if (wider && taller) {
-        cout << "wider and taller\n";
+        cout << "wider and taller\t";
         // choose the scale factor that will best fit the image to the display
         if (getScaleFactor(sectionWidth, actualWidth) > getScaleFactor(sectionHeight, actualHeight)) {
-            cout << "taller\n";
-            scaleWidth = actualWidth * getScaleFactor(sectionHeight, actualHeight);
-            scaleHeight = actualHeight;
-        } else {
             cout << "wider\n";
-            scaleWidth = actualWidth;
-            scaleHeight = actualHeight;
+            scaleWidth = actualWidth * getScaleFactor(sectionHeight, actualHeight) * 1.25;
+            scaleHeight = actualHeight * getScaleFactor(sectionHeight, actualHeight) * 1.25;
+            resize(scaleWidth, scaleHeight);
+        } else {
+            cout << "taller\n";
+            scaleWidth = actualWidth * getScaleFactor(sectionWidth, actualWidth) * 1.25;
+            scaleHeight = actualHeight * getScaleFactor(sectionWidth, actualWidth) * 1.25;
+            resize(scaleWidth, scaleHeight);
         }
     }
     else if (wider) {
         cout << "wider\n";
-        scaleWidth = actualWidth * getScaleFactor(sectionHeight, actualHeight);
-        scaleHeight = actualHeight * getScaleFactor(sectionHeight, actualHeight);
+        scaleWidth = actualWidth * getScaleFactor(sectionHeight, actualHeight) * 1.25;
+        scaleHeight = actualHeight * getScaleFactor(sectionHeight, actualHeight) * 1.25;
+        resize(scaleWidth, scaleHeight);
     }
     else if (taller) {
         cout << "taller\n";
-        scaleWidth = actualWidth;
-        scaleHeight = actualHeight * getScaleFactor(sectionWidth, actualWidth);
+        scaleWidth = actualWidth * getScaleFactor(sectionWidth, actualWidth) * 1.25;
+        scaleHeight = actualHeight * getScaleFactor(sectionWidth, actualWidth) * 1.25;
+        resize(scaleWidth, scaleHeight);
+    } else {
+        cout << "thinner and shorter\t";
+        if (getScaleFactor(sectionWidth, actualWidth) < getScaleFactor(sectionHeight, actualHeight)) {
+            cout << "thinner\n";
+            scaleWidth = actualWidth * getScaleFactor(sectionHeight, actualHeight) * 1.25;
+            scaleHeight = actualHeight * getScaleFactor(sectionHeight, actualHeight) * 1.25;
+            resize(scaleWidth, scaleHeight);
+        } else {
+            cout << "shorter\n";
+            scaleWidth = actualWidth * getScaleFactor(sectionWidth, actualWidth) * 1.25;
+            scaleHeight = actualHeight * getScaleFactor(sectionWidth, actualWidth) * 1.25;
+            resize(scaleWidth, scaleHeight);
+        }
     }
 
     
@@ -153,8 +165,8 @@ void SubsectionImage::updateZoom(float dt) {
         zoom.percent = 1 - (zoom.end - zoom.current) / (zoom.end - zoom.start);
         if (zoom.percent < 1.0f) {
             ofPoint dim = bezierEaseOut(zoom.from, zoom.to, zoom.percent);
-            width = dim.x;
-            height = dim.y;
+            zoomWidth = dim.x;
+            zoomHeight = dim.y;
         }
     }
 }
@@ -192,7 +204,7 @@ void SubsectionImage::update() {
 void SubsectionImage::draw(float x, float y) {
     ofEnableAlphaBlending();
     ofSetColor(ofColor(255, 255, 255, alpha.x));
-    ofImage::drawSubsection(x, y, width, height, pos.x, pos.y, scaleWidth, scaleHeight);
+    ofImage::drawSubsection(x, y, zoomWidth, zoomHeight, pos.x, pos.y, cropWidth, cropHeight);
     ofDisableAlphaBlending();
 }
 
@@ -202,7 +214,7 @@ void SubsectionImage::draw(float x, float y) {
  * and at the current crop position of the plot.
  */
 void SubsectionImage::draw(float x, float y, float w, float h) {
-    ofImage::drawSubsection(x, y, w, h, pos.x, pos.y, scaleWidth, scaleHeight);
+    ofImage::drawSubsection(x, y, w, h, pos.x, pos.y, width, height);
 }
 
 

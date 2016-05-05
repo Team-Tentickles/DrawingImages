@@ -21,6 +21,9 @@ private:
     int cropWidth;
     int cropHeight;
     
+    float zoomWidth;
+    float zoomHeight;
+    
     float initialWidth;
     float initialHeight;
     
