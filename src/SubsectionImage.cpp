@@ -10,29 +10,67 @@
 
 
 /**
+ * Load an image from the URL
+ */
+void SubsectionImage::load(string imageURL) {
+    ofImage::load(imageURL);
+    initialWidth = width;
+    initialHeight = height;
+}
+
+
+/**
  * Initializes the SubsectionImage. The User can specify:
  *      1) the scaled width of the cropped image
  *      2) the scaled height of the cropped image
  *      3) the x position to start cropping at
  *      4) the y position to start cropping at
  */
-void SubsectionImage::init(float pcropWidth, float pcropHeight, float cropX, float cropY) {
-    cropWidth = pcropWidth;
-    cropHeight = pcropHeight;
+void SubsectionImage::init(float sectionWidth, float sectionHeight, float cropX, float cropY) {
+    cropWidth = sectionWidth;
+    cropHeight = sectionHeight;
     
-    float initWidth = width;
-    float initHeight = height;
+    float actualWidth = initialWidth;
+    float actualHeight = initialHeight;
     
     width = 0;
     height = 0;
     
-    bool wider = initWidth > pcropWidth;
-    bool taller = initHeight > pcropHeight;
+    bool wider = actualWidth > sectionWidth;
+    bool taller = actualHeight > sectionHeight;
+    
+    cout << getScaleFactor(sectionWidth, actualWidth);
+    cout << "\n";
+    cout << getScaleFactor(sectionHeight, actualHeight);
+    cout << "\n";
+    
     if (wider && taller) {
-        
+        cout << "wider and taller\n";
+        // choose the scale factor that will best fit the image to the display
+        if (getScaleFactor(sectionWidth, actualWidth) > getScaleFactor(sectionHeight, actualHeight)) {
+            cout << "taller\n";
+            scaleWidth = actualWidth * getScaleFactor(sectionHeight, actualHeight);
+            scaleHeight = actualHeight;
+        } else {
+            cout << "wider\n";
+            scaleWidth = actualWidth;
+            scaleHeight = actualHeight;
+        }
     }
-    maxWidth = 0.0;
-    maxHeight = 0.0;
+    else if (wider) {
+        cout << "wider\n";
+        scaleWidth = actualWidth * getScaleFactor(sectionHeight, actualHeight);
+        scaleHeight = actualHeight * getScaleFactor(sectionHeight, actualHeight);
+    }
+    else if (taller) {
+        cout << "taller\n";
+        scaleWidth = actualWidth;
+        scaleHeight = actualHeight * getScaleFactor(sectionWidth, actualWidth);
+    }
+
+    
+//    maxWidth = 0.0;
+//    maxHeight = 0.0;
     
     alpha.x = 255;
     pos.x = cropX;
@@ -154,7 +192,7 @@ void SubsectionImage::update() {
 void SubsectionImage::draw(float x, float y) {
     ofEnableAlphaBlending();
     ofSetColor(ofColor(255, 255, 255, alpha.x));
-    ofImage::drawSubsection(x, y, width, height, pos.x, pos.y, cropWidth, cropHeight);
+    ofImage::drawSubsection(x, y, width, height, pos.x, pos.y, scaleWidth, scaleHeight);
     ofDisableAlphaBlending();
 }
 
@@ -164,7 +202,7 @@ void SubsectionImage::draw(float x, float y) {
  * and at the current crop position of the plot.
  */
 void SubsectionImage::draw(float x, float y, float w, float h) {
-    ofImage::drawSubsection(x, y, w, h, pos.x, pos.y, cropWidth, cropHeight);
+    ofImage::drawSubsection(x, y, w, h, pos.x, pos.y, scaleWidth, scaleHeight);
 }
 
 
@@ -187,6 +225,17 @@ ofPoint SubsectionImage::bezierEaseOut(ofPoint from, ofPoint to, float pct) {
     ofPoint dist = to - from;
     float mod = pow((pct - 1), 3) + 1;
     return dist * mod;
+}
+
+
+/**
+ * determine the scale factor between two points. 
+ */
+float SubsectionImage::getScaleFactor(float from, float to) {
+    if (to == 0) {
+        return 0;
+    }
+    return from / to;
 }
 
 

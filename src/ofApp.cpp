@@ -182,24 +182,24 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 
 
 void ofApp::initImages() {
-    startingArtist11Img.init(200, 200,  500, 0);
-    startingArtist12Img.init(200, 200, 500, 0);
-    startingArtist21Img.init(200, 200, 500, 0);
-    startingArtist22Img.init(200, 200, 500, 0);
-    startingAlbum11Img.init(200, 200, 500, 0);
-    startingAlbum12Img.init(200, 200, 500, 0);
-    startingAlbum21Img.init(200, 200, 500, 0);
-    startingAlbum22Img.init(200, 200, 500, 0);
+    startingArtist11Img.init(startingArtist11.width, startingArtist11.height, 0, 0);
+    startingArtist12Img.init(startingArtist12.width, startingArtist12.height, 0, 0);
+    startingArtist21Img.init(startingArtist21.width, startingArtist21.height, 0, 0);
+    startingArtist22Img.init(startingArtist22.width, startingArtist22.height, 0, 0);
+    startingAlbum11Img.init(200, 200, 0, 0);
+    startingAlbum12Img.init(200, 200, 0, 0);
+    startingAlbum21Img.init(200, 200, 0, 0);
+    startingAlbum22Img.init(200, 200, 0, 0);
     
-    supportingArtist1Img.init(200, 200, 500, 0);
-    supportingArtist2Img.init(200, 200, 500, 0);
-    supportingArtist3Img.init(200, 200, 500, 0);
-    supportingArtist4Img.init(200, 200, 500, 0);
-    supportingArtist5Img.init(200, 200, 500, 0);
-    supportingArtist6Img.init(200, 200, 500, 0);
+    supportingArtist1Img.init(200, 200, 0, 0);
+    supportingArtist2Img.init(200, 200, 0, 0);
+    supportingArtist3Img.init(200, 200, 0, 0);
+    supportingArtist4Img.init(200, 200, 0, 0);
+    supportingArtist5Img.init(200, 200, 0, 0);
+    supportingArtist6Img.init(200, 200, 0, 0);
     
-    mainArtist1Img.init(200, 200, 500, 0);
-    mainArtist2Img.init(200, 200, 500, 0);
+    mainArtist1Img.init(200, 200, 0, 0);
+    mainArtist2Img.init(200, 200, 0, 0);
 }
 
 

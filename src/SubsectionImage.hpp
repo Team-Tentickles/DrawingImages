@@ -21,8 +21,11 @@ private:
     int cropWidth;
     int cropHeight;
     
-    float maxWidth;
-    float maxHeight;
+    float initialWidth;
+    float initialHeight;
+    
+    float scaleWidth;
+    float scaleHeight;
     
     ofPoint pos;
     ofPoint alpha;
@@ -34,8 +37,11 @@ private:
     ofPoint linearEase(ofPoint from, ofPoint to, float pct);
     ofPoint bezierEaseOut(ofPoint from, ofPoint to, float pct);
     
+    float getScaleFactor(float from, float to);
+    
 public:
     void init(float cropWidth, float cropHeight, float cropX, float cropY);
+    void load(string imageURL);
     void update();
     
     void defineTranslate(ofPoint from, ofPoint to, float duration, float delay);
