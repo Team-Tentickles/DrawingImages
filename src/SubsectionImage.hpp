@@ -21,6 +21,9 @@ private:
     int cropWidth;
     int cropHeight;
     
+    float maxWidth;
+    float maxHeight;
+    
     ofPoint pos;
     ofPoint alpha;
     

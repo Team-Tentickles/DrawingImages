@@ -20,8 +20,19 @@ void SubsectionImage::init(float pcropWidth, float pcropHeight, float cropX, flo
     cropWidth = pcropWidth;
     cropHeight = pcropHeight;
     
+    float initWidth = width;
+    float initHeight = height;
+    
     width = 0;
     height = 0;
+    
+    bool wider = initWidth > pcropWidth;
+    bool taller = initHeight > pcropHeight;
+    if (wider && taller) {
+        
+    }
+    maxWidth = 0.0;
+    maxHeight = 0.0;
     
     alpha.x = 255;
     pos.x = cropX;
