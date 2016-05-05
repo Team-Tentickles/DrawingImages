@@ -42,7 +42,7 @@ void SubsectionImage::init(float sectionWidth, float sectionHeight, float cropX,
     if (wider && taller) {
         cout << "wider and taller\t";
         // choose the scale factor that will best fit the image to the display
-        if (getScaleFactor(sectionWidth, actualWidth) > getScaleFactor(sectionHeight, actualHeight)) {
+        if (getScaleFactor(sectionWidth, actualWidth) < getScaleFactor(sectionHeight, actualHeight)) {
             cout << "wider\n";
             scaleWidth = actualWidth * getScaleFactor(sectionHeight, actualHeight) * 1.25;
             scaleHeight = actualHeight * getScaleFactor(sectionHeight, actualHeight) * 1.25;

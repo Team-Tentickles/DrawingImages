@@ -97,6 +97,6 @@ class ofApp : public ofBaseApp{
     
         void setupFadeZoomAnimation(SubsectionImage img);
     
-    void resetAnimation();
-    ofEvent<string> animationDone;
+        void resetAnimation();
+        ofEvent<string> animationDone;
 };
