@@ -98,6 +98,20 @@ void SubsectionImage::init(float sectionWidth, float sectionHeight, float cropX,
  */
 void SubsectionImage::defineTranslate(ofPoint from, ofPoint to, float duration, float delay) {
     translate.from = from;
+    
+    // make sure the translate doesn't extend outside the bounds of the image
+    if ((to.y - from.y) + cropHeight > height) {
+        to.y = height + from.y - cropHeight;
+    } else if (to.y - from.y < 0) {
+        to.y = 0;
+    }
+    
+    if ((to.x - from.x) + cropWidth > width) {
+        to.x = width + from.x - cropWidth;
+    } else if (to.x - from.x < 0) {
+        to.x = 0;
+    }
+    
     translate.to = to;
     translate.start = ofGetElapsedTimef() + (delay / 1000);
     translate.current = ofGetElapsedTimef() + (delay / 1000);
@@ -205,8 +219,6 @@ void SubsectionImage::updateZoom(float dt) {
             if (!zoomComplete) {
                 zoomComplete = true;
                 string msg = "animation complete";
-//                ofNotifyEvent(zoomCallback, msg, this);
-//                zoomCallback = nullptr;
                 for (int i = 0; i < zoomCallback.size(); i++) {
                     cout << msg;
                     ofNotifyEvent(*zoomCallback[i], msg, this);
@@ -271,7 +283,7 @@ void SubsectionImage::draw(float x, float y) {
  * and at the current crop position of the plot.
  */
 void SubsectionImage::draw(float x, float y, float w, float h) {
-    ofImage::drawSubsection(x, y, w, h, pos.x, pos.y, width, height);
+    ofImage::drawSubsection(x, y, w, h, pos.x, pos.y, cropWidth, cropHeight);
 }
 
 

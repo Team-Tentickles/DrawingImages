@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B70EF0BE1CDD242300AE719E /* TextBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B70EF0BC1CDD242300AE719E /* TextBlock.cpp */; };
 		B7624FA31CCC205A00C723BB /* SubsectionImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7624FA01CCC203800C723BB /* SubsectionImage.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
@@ -43,6 +44,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B70EF0BC1CDD242300AE719E /* TextBlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextBlock.cpp; sourceTree = "<group>"; };
+		B70EF0BD1CDD242300AE719E /* TextBlock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TextBlock.hpp; sourceTree = "<group>"; };
 		B71F4FAF1CCFA3A8006F93AB /* Panel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Panel.hpp; sourceTree = "<group>"; };
 		B7624FA01CCC203800C723BB /* SubsectionImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SubsectionImage.cpp; sourceTree = "<group>"; };
 		B7624FA11CCC203800C723BB /* SubsectionImage.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = SubsectionImage.hpp; sourceTree = "<group>"; };
@@ -114,6 +117,8 @@
 				B7624FA11CCC203800C723BB /* SubsectionImage.hpp */,
 				B71F4FAF1CCFA3A8006F93AB /* Panel.hpp */,
 				B7754F6C1CD6E3B000A14F8F /* Animation.h */,
+				B70EF0BC1CDD242300AE719E /* TextBlock.cpp */,
+				B70EF0BD1CDD242300AE719E /* TextBlock.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -216,6 +221,7 @@
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
+				B70EF0BE1CDD242300AE719E /* TextBlock.cpp in Sources */,
 				B7624FA31CCC205A00C723BB /* SubsectionImage.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

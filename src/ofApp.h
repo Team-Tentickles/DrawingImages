@@ -2,7 +2,8 @@
 
 #include "ofMain.h"
 #include "SubsectionImage.hpp"
-#include "Panel.hpp";
+#include "Panel.hpp"
+#include "TextBlock.hpp"
 
 
 class ofApp : public ofBaseApp{
@@ -26,12 +27,15 @@ class ofApp : public ofBaseApp{
         Panel supportingArtist5 = {450, 300};
         Panel supportingArtist6 = {300, 450};
     
+        TextBlock artistBlock;
+    
         Panel mainArtist1 = {450, 450};
         Panel mainArtist2 = {450, 450};
     
         float colorPct = 0.0;
         ofColor idle1 = {141,82,224};
         ofColor idle2 = {247,24,108};
+        ofColor textBackground = {0, 0, 0};
         ofColor curColor = idle1;
     
         float curTime = 0.0;
@@ -71,6 +75,8 @@ class ofApp : public ofBaseApp{
         
         SubsectionImage mainArtist1Img;
         SubsectionImage mainArtist2Img;
+    
+        string mainArtistName;
     
         //---for the timer
         float ellapsedTime;

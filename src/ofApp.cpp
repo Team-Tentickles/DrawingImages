@@ -1,5 +1,6 @@
 #include "ofApp.h"
 #include "SubsectionImage.hpp"
+#include "TextBlock.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup()
@@ -8,6 +9,10 @@ void ofApp::setup()
     loadImages();
     resetAnimation();
     ofAddListener(animationDone, this, &ofApp::onArtistAnimationComplete);
+    
+    string artistName = "Kanye West";
+    ofColor background(0, 0, 0);
+    artistBlock.init(supportingArtist5.width, supportingArtist5.height, artistName, textBackground);
 }
 
 //--------------------------------------------------------------
@@ -120,7 +125,7 @@ void ofApp::draw(){
  */
 void ofApp::onArtistAnimationComplete(string & evtString) {
     cout << "event called: " << evtString << "\n";
-    defineFadeOut(1000, 0);
+    defineFadeOut(1000, 30000);
 }
 
 
@@ -142,7 +147,8 @@ void ofApp::drawArtistImages() {
     supportingArtist2Img.draw(2510, 10);
     supportingArtist3Img.draw(2050, 320);
     supportingArtist4Img.draw(2820, 10);
-    supportingArtist5Img.draw(3130, 10);
+//    supportingArtist5Img.draw(3130, 10);
+    artistBlock.draw(3130, 10);
     supportingArtist6Img.draw(3130, 320);
     
     mainArtist1Img.draw(3590, 10);
@@ -294,38 +300,39 @@ void ofApp::loadImages() {
  */
 void ofApp::defineAnimations(float duration, float delay) {
     
+    cout << "define animations\n";
     // LEVEL ONE OF THE SPIRE
     startingArtist11Img.defineTranslate(ofPoint(200, 0), ofPoint(200, 100), duration * 15, delay * 1 + 500);
     startingArtist11Img.defineZoom(ofPoint(0, 0), ofPoint(startingArtist11.width, startingArtist11.height), duration, delay * 1 + 500);
-    startingArtist11Img.defineOpacity(ofPoint(0), ofPoint(255), duration, delay * 1 + 500);
+    startingArtist11Img.defineOpacity(ofPoint(0), ofPoint(255), duration * 2, delay * 1 + 500);
     
     startingArtist12Img.defineTranslate(ofPoint(200, 0), ofPoint(200, 100), duration * 15, delay * 2 + 500);
     startingArtist12Img.defineZoom(ofPoint(0, 0), ofPoint(startingArtist12.width, startingArtist12.height), duration, delay * 2 + 500);
-    startingArtist12Img.defineOpacity(ofPoint(0), ofPoint(255), duration, delay * 2 + 500);
+    startingArtist12Img.defineOpacity(ofPoint(0), ofPoint(255), duration * 2, delay * 2 + 500);
     
     startingArtist21Img.defineTranslate(ofPoint(200, 0), ofPoint(200, 100), duration * 15, delay * 3 + 500);
     startingArtist21Img.defineZoom(ofPoint(0, 0), ofPoint(startingArtist21.width, startingArtist21.height), duration, delay * 3 + 500);
-    startingArtist21Img.defineOpacity(ofPoint(0), ofPoint(255), duration, delay * 3 + 500);
+    startingArtist21Img.defineOpacity(ofPoint(0), ofPoint(255), duration * 2, delay * 3 + 500);
     
     startingArtist22Img.defineTranslate(ofPoint(0, 0), ofPoint(0, 100), duration * 15, delay * 4 + 500);
     startingArtist22Img.defineZoom(ofPoint(0, 0), ofPoint(startingArtist22.width, startingArtist22.height), duration, delay * 4 + 500);
-    startingArtist22Img.defineOpacity(ofPoint(0), ofPoint(255), duration, delay * 4 + 500);
+    startingArtist22Img.defineOpacity(ofPoint(0), ofPoint(255), duration * 2, delay * 4 + 500);
     
     startingAlbum11Img.defineTranslate(ofPoint(0, 0), ofPoint(0, 100), duration * 15, delay * 5 + 500);
     startingAlbum11Img.defineZoom(ofPoint(0, 0), ofPoint(startingAlbum11.width, startingAlbum11.height), duration, delay * 5 + 500);
-    startingAlbum11Img.defineOpacity(ofPoint(0), ofPoint(255), duration, delay * 5 + 500);
+    startingAlbum11Img.defineOpacity(ofPoint(0), ofPoint(255), duration * 2, delay * 5 + 500);
     
     startingAlbum12Img.defineTranslate(ofPoint(0, 0), ofPoint(0, 100), duration * 15, delay * 6 + 500);
     startingAlbum12Img.defineZoom(ofPoint(0, 0), ofPoint(startingAlbum12.width, startingAlbum12.height), duration, delay * 6 + 500);
-    startingAlbum12Img.defineOpacity(ofPoint(0), ofPoint(255), duration, delay * 6 + 500);
+    startingAlbum12Img.defineOpacity(ofPoint(0), ofPoint(255), duration * 2, delay * 6 + 500);
     
     startingAlbum21Img.defineTranslate(ofPoint(0, 0), ofPoint(0, 100), duration * 15, delay * 7 + 500);
     startingAlbum21Img.defineZoom(ofPoint(0, 0), ofPoint(startingAlbum21.width, startingAlbum21.height), duration, delay * 7 + 500);
-    startingAlbum21Img.defineOpacity(ofPoint(0), ofPoint(255), duration, delay * 7 + 500);
+    startingAlbum21Img.defineOpacity(ofPoint(0), ofPoint(255), duration * 2, delay * 7 + 500);
     
     startingAlbum22Img.defineTranslate(ofPoint(0, 0), ofPoint(0, 100), duration * 15, delay * 8 + 500);
     startingAlbum22Img.defineZoom(ofPoint(0, 0), ofPoint(startingAlbum22.width, startingAlbum22.height), duration, delay * 8 + 500);
-    startingAlbum22Img.defineOpacity(ofPoint(0), ofPoint(255), duration, delay * 8 + 500);
+    startingAlbum22Img.defineOpacity(ofPoint(0), ofPoint(255), duration * 2, delay * 8 + 500);
     
     
     // LEVEL TWO OF THE SPIRE
@@ -375,25 +382,25 @@ void ofApp::defineFadeOut(float duration, float delay) {
     
     cout << "defining fade out\n";
     // FADE IMAGES OUT AT THE END
-    startingArtist11Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
-    startingArtist12Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
-    startingArtist21Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
-    startingArtist22Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+    startingArtist11Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay);
+    startingArtist12Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay);
+    startingArtist21Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay);
+    startingArtist22Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay);
     
-    startingAlbum11Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
-    startingAlbum12Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
-    startingAlbum21Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
-    startingAlbum22Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+    startingAlbum11Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay);
+    startingAlbum12Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay);
+    startingAlbum21Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay);
+    startingAlbum22Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay);
     
-    supportingArtist1Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
-    supportingArtist2Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
-    supportingArtist3Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
-    supportingArtist4Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
-    supportingArtist5Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
-    supportingArtist6Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+    supportingArtist1Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay);
+    supportingArtist2Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay);
+    supportingArtist3Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay);
+    supportingArtist4Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay);
+    supportingArtist5Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay);
+    supportingArtist6Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay);
     
-    mainArtist1Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
-    mainArtist2Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay * 50 + 500);
+    mainArtist1Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay);
+    mainArtist2Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay);
 };
 
 
