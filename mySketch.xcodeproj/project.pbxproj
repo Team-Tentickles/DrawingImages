@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B70EF0BE1CDD242300AE719E /* TextBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B70EF0BC1CDD242300AE719E /* TextBlock.cpp */; };
+		B7499E8A1CDD4A3A008AF25F /* AnimatedImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7499E881CDD4A3A008AF25F /* AnimatedImage.cpp */; };
 		B7624FA31CCC205A00C723BB /* SubsectionImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7624FA01CCC203800C723BB /* SubsectionImage.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
@@ -47,6 +48,8 @@
 		B70EF0BC1CDD242300AE719E /* TextBlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextBlock.cpp; sourceTree = "<group>"; };
 		B70EF0BD1CDD242300AE719E /* TextBlock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TextBlock.hpp; sourceTree = "<group>"; };
 		B71F4FAF1CCFA3A8006F93AB /* Panel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Panel.hpp; sourceTree = "<group>"; };
+		B7499E881CDD4A3A008AF25F /* AnimatedImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimatedImage.cpp; sourceTree = "<group>"; };
+		B7499E891CDD4A3A008AF25F /* AnimatedImage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimatedImage.hpp; sourceTree = "<group>"; };
 		B7624FA01CCC203800C723BB /* SubsectionImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SubsectionImage.cpp; sourceTree = "<group>"; };
 		B7624FA11CCC203800C723BB /* SubsectionImage.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = SubsectionImage.hpp; sourceTree = "<group>"; };
 		B7754F6C1CD6E3B000A14F8F /* Animation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
@@ -119,6 +122,8 @@
 				B7754F6C1CD6E3B000A14F8F /* Animation.h */,
 				B70EF0BC1CDD242300AE719E /* TextBlock.cpp */,
 				B70EF0BD1CDD242300AE719E /* TextBlock.hpp */,
+				B7499E881CDD4A3A008AF25F /* AnimatedImage.cpp */,
+				B7499E891CDD4A3A008AF25F /* AnimatedImage.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -219,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7499E8A1CDD4A3A008AF25F /* AnimatedImage.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				B70EF0BE1CDD242300AE719E /* TextBlock.cpp in Sources */,
