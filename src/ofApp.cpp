@@ -404,6 +404,8 @@ void ofApp::defineFadeOut(float duration, float delay) {
     
     mainArtist1Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay);
     mainArtist2Img.defineOpacity(ofPoint(255), ofPoint(0), duration, delay);
+    
+    artistBlock.defineOpacity(ofPoint(255), ofPoint(0), duration, delay);
 };
 
 

@@ -41,6 +41,8 @@ private:
     bool zoomComplete;
     vector< ofEvent<string>* > zoomCallback;
     
+    string toUpper(string str);
+    
 
     ofPoint bezierEaseOut(ofPoint from, ofPoint to, float pct);
     ofPoint linearEase(ofPoint from, ofPoint to, float pct);
@@ -64,7 +66,8 @@ public:
     void defineOpacity(ofPoint from, ofPoint to, float duration, float delay);
     void defineOpacity(ofPoint from, ofPoint to, float duration, float delay, ofEvent<string> & onComplete);
     void updateOpacity(float dt);
-    
+  
+    void setArtist(string artistName);
 };
 
 

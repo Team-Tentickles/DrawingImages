@@ -13,11 +13,12 @@
  * starting message
  */
 void TextBlock::init(float initWidth, float initHeight, string text, ofColor color) {
-    artistName.load("fonts/Qanelas-Heavy.otf", 14, true, true);
+    artistName.load("fonts/Qanelas-Heavy.otf", 22, true, true);
     
     width = initWidth;
     height = initHeight;
-    textString = text;
+//    textString = text;
+    setArtist(text);
     backgroundColor = color;
     
     pos.x = 0;
@@ -226,4 +227,27 @@ ofPoint TextBlock::bezierEaseOut(ofPoint from, ofPoint to, float pct) {
     ofPoint dist = to - from;
     float mod = pow((pct - 1), 3) + 1;
     return dist * mod;
+}
+
+
+/**
+ * set the name of the artist and format the text appropriately
+ */
+void TextBlock::setArtist(string artistName) {
+    textString = toUpper("Now Playing:\n" + artistName);
+}
+
+/**
+ * A utility function for converting text to Upper Case
+ */
+string TextBlock::toUpper ( string str )
+{
+    string strUpper = "";
+    
+    for( int i=0; i<str.length(); i++ )
+    {
+        strUpper += toupper( str[ i ] );
+    }
+    
+    return strUpper;  
 }

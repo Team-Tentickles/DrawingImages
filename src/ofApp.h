@@ -27,8 +27,6 @@ class ofApp : public ofBaseApp{
         Panel supportingArtist5 = {450, 300};
         Panel supportingArtist6 = {300, 450};
     
-        TextBlock artistBlock;
-    
         Panel mainArtist1 = {450, 450};
         Panel mainArtist2 = {450, 450};
     
@@ -75,6 +73,8 @@ class ofApp : public ofBaseApp{
         
         SubsectionImage mainArtist1Img;
         SubsectionImage mainArtist2Img;
+    
+        TextBlock artistBlock;
     
         string mainArtistName;
     
