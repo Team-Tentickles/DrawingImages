@@ -11,7 +11,7 @@ void ofApp::setup()
     ofAddListener(animationDone, this, &ofApp::onArtistAnimationComplete);
     
     string artistName = "Kanye West";
-    ofColor background(0, 0, 0);
+    ofColor background(255, 255, 255, 0);
     artistBlock.init(supportingArtist5.width, supportingArtist5.height, artistName, textBackground);
 }
 
@@ -97,6 +97,8 @@ void ofApp::update(){
         supportingArtist5Img.update();
         supportingArtist6Img.update();
         
+        artistBlock.update();
+        
         mainArtist1Img.update();
         mainArtist2Img.update();
         
@@ -111,7 +113,6 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-//    cout << "drawing\n";
     drawIdle();
     if (drawArtists) {
         drawArtistImages();
@@ -124,7 +125,6 @@ void ofApp::draw(){
  * called to fade the images out.
  */
 void ofApp::onArtistAnimationComplete(string & evtString) {
-    cout << "event called: " << evtString << "\n";
     defineFadeOut(1000, 30000);
 }
 
@@ -370,6 +370,9 @@ void ofApp::defineAnimations(float duration, float delay) {
     mainArtist2Img.defineZoom(ofPoint(0, 0), ofPoint(mainArtist2.width, mainArtist2.height), duration, delay * 18 + 500);
     mainArtist2Img.defineOpacity(ofPoint(0), ofPoint(255), duration, delay * 18 + 500, animationDone);
 
+    // NAME OF THE ARTIST
+    artistBlock.defineTranslate(ofPoint(50, supportingArtist5.height / 2), ofPoint(0, supportingArtist5.height / 2), duration, delay * 20 + 500);
+    artistBlock.defineOpacity(ofPoint(0), ofPoint(255), duration, delay * 20 + 500);
  
     intervalTime = delay * 50 + 500 + duration;
 }

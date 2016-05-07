@@ -143,7 +143,7 @@ void SubsectionImage::defineZoom(ofPoint from, ofPoint to, float duration, float
     zoom.to = to;
     zoom.start = ofGetElapsedTimef() + (delay / 1000);
     zoom.current = ofGetElapsedTimef() + (delay / 1000);
-    zoom.end = translate.start + duration;
+    zoom.end = zoom.start + duration;
     zoom.percent = 0.0f;
     zoomComplete = false;
 }
@@ -161,7 +161,7 @@ void SubsectionImage::defineOpacity(ofPoint from, ofPoint to, float duration, fl
     opacity.to = to;
     opacity.start = ofGetElapsedTimef() + (delay / 1000);
     opacity.current = ofGetElapsedTimef() + (delay / 1000);
-    opacity.end = translate.start + duration;
+    opacity.end = opacity.start + duration;
     opacity.percent = 0.0f;
     opacityComplete = false;
 }
@@ -220,7 +220,6 @@ void SubsectionImage::updateZoom(float dt) {
                 zoomComplete = true;
                 string msg = "animation complete";
                 for (int i = 0; i < zoomCallback.size(); i++) {
-                    cout << msg;
                     ofNotifyEvent(*zoomCallback[i], msg, this);
                 }
                 zoomCallback.clear();
@@ -242,11 +241,9 @@ void SubsectionImage::updateOpacity(float dt) {
             alpha = bezierEaseOut(opacity.from, opacity.to, opacity.percent);
         } else {
             if (!opacityComplete) {
-                cout << opacityComplete << "\n";
                 opacityComplete = true;
                 string msg = "opacity complete";
                 for (int i = 0; i < opacityCallback.size(); i++) {
-//                    cout << msg;
                     ofNotifyEvent(*opacityCallback[i], msg, this);
                 }
                 opacityCallback.clear();
