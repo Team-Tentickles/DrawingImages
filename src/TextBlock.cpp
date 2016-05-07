@@ -120,7 +120,7 @@ void TextBlock::defineOpacity(ofPoint from, ofPoint to, float duration, float de
     opacity.to = to;
     opacity.start = ofGetElapsedTimef() + (delay / 1000);
     opacity.current = ofGetElapsedTimef() + (delay / 1000);
-    opacity.end = zoom.start + duration;
+    opacity.end = opacity.start + duration;
     opacity.percent = 0.0f;
     opacityComplete = false;
 }

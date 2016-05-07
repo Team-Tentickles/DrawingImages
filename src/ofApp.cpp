@@ -304,7 +304,7 @@ void ofApp::defineAnimations(float duration, float delay) {
     // LEVEL ONE OF THE SPIRE
     startingArtist11Img.defineTranslate(ofPoint(200, 0), ofPoint(200, 100), duration * 15, delay * 1 + 500);
     startingArtist11Img.defineZoom(ofPoint(0, 0), ofPoint(startingArtist11.width, startingArtist11.height), duration, delay * 1 + 500);
-    startingArtist11Img.defineOpacity(ofPoint(0), ofPoint(255), duration * 2, delay * 1 + 500);
+    startingArtist11Img.defineOpacity(ofPoint(0), ofPoint(255), duration * 2, delay * 1 + 500, playMusic);
     
     startingArtist12Img.defineTranslate(ofPoint(200, 0), ofPoint(200, 100), duration * 15, delay * 2 + 500);
     startingArtist12Img.defineZoom(ofPoint(0, 0), ofPoint(startingArtist12.width, startingArtist12.height), duration, delay * 2 + 500);
@@ -369,10 +369,11 @@ void ofApp::defineAnimations(float duration, float delay) {
     mainArtist2Img.defineTranslate(ofPoint(0, 0), ofPoint(0, 100), duration * 15, delay * 18 + 500);
     mainArtist2Img.defineZoom(ofPoint(0, 0), ofPoint(mainArtist2.width, mainArtist2.height), duration, delay * 18 + 500);
     mainArtist2Img.defineOpacity(ofPoint(0), ofPoint(255), duration, delay * 18 + 500, animationDone);
+//    mainArtist2Img.defineOpacity(ofPoint(0), ofPoint(255), duration, delay * 18 + 500);
 
     // NAME OF THE ARTIST
     artistBlock.defineTranslate(ofPoint(50, supportingArtist5.height / 2), ofPoint(0, supportingArtist5.height / 2), duration, delay * 20 + 500);
-    artistBlock.defineOpacity(ofPoint(0), ofPoint(255), duration, delay * 20 + 500);
+    artistBlock.defineOpacity(ofPoint(0), ofPoint(255), duration, delay * 19 + 500);
  
     intervalTime = delay * 50 + 500 + duration;
 }

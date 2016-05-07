@@ -105,4 +105,5 @@ class ofApp : public ofBaseApp{
     
         void resetAnimation();
         ofEvent<string> animationDone;
+        ofEvent<string> playMusic;
 };
