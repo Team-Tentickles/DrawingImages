@@ -2,7 +2,10 @@
 #include "SubsectionImage.hpp"
 #include "TextBlock.hpp"
 
-//--------------------------------------------------------------
+
+/**
+ * Loads the images and creates the initial state of the Spire
+ */
 void ofApp::setup()
 {
     ofSetFrameRate(60);
@@ -15,7 +18,10 @@ void ofApp::setup()
     artistBlock.init(supportingArtist5.width, supportingArtist5.height, artistName, textBackground);
 }
 
-//--------------------------------------------------------------
+/**
+ * Updates the App. It's primary purpose is updating the animations of
+ * the images that are to be displayed
+ */
 void ofApp::update(){
     
     /**
@@ -24,59 +30,6 @@ void ofApp::update(){
      * updates only happen after that initial render
      */
     if (ofGetFrameNum() > 1) {
-
-//        startingArtist11Img.updateTranslate(ofGetLastFrameTime());
-//        startingArtist11Img.updateZoom(ofGetLastFrameTime());
-//        startingArtist11Img.updateOpacity(ofGetLastFrameTime());
-//        
-//        startingArtist12Img.updateTranslate(ofGetLastFrameTime());
-//        startingArtist12Img.updateZoom(ofGetLastFrameTime());
-//        startingArtist12Img.updateOpacity(ofGetLastFrameTime());
-//        
-//        startingArtist21Img.updateTranslate(ofGetLastFrameTime());
-//        startingArtist21Img.updateZoom(ofGetLastFrameTime());
-//        
-//        startingArtist22Img.updateTranslate(ofGetLastFrameTime());
-//        startingArtist22Img.updateZoom(ofGetLastFrameTime());
-//        
-//        
-//        startingAlbum11Img.updateTranslate(ofGetLastFrameTime());
-//        startingAlbum11Img.updateZoom(ofGetLastFrameTime());
-//        
-//        startingAlbum12Img.updateTranslate(ofGetLastFrameTime());
-//        startingAlbum12Img.updateZoom(ofGetLastFrameTime());
-//        
-//        startingAlbum21Img.updateTranslate(ofGetLastFrameTime());
-//        startingAlbum21Img.updateZoom(ofGetLastFrameTime());
-//        
-//        startingAlbum22Img.updateTranslate(ofGetLastFrameTime());
-//        startingAlbum22Img.updateZoom(ofGetLastFrameTime());
-//        
-//        
-//        supportingArtist1Img.updateTranslate(ofGetLastFrameTime());
-//        supportingArtist1Img.updateZoom(ofGetLastFrameTime());
-//        
-//        supportingArtist2Img.updateTranslate(ofGetLastFrameTime());
-//        supportingArtist2Img.updateZoom(ofGetLastFrameTime());
-//        
-//        supportingArtist3Img.updateTranslate(ofGetLastFrameTime());
-//        supportingArtist3Img.updateZoom(ofGetLastFrameTime());
-//        
-//        supportingArtist4Img.updateTranslate(ofGetLastFrameTime());
-//        supportingArtist4Img.updateZoom(ofGetLastFrameTime());
-//        
-//        supportingArtist5Img.updateTranslate(ofGetLastFrameTime());
-//        supportingArtist5Img.updateZoom(ofGetLastFrameTime());
-//        
-//        supportingArtist6Img.updateTranslate(ofGetLastFrameTime());
-//        supportingArtist6Img.updateZoom(ofGetLastFrameTime());
-//        
-//        
-//        mainArtist1Img.updateTranslate(ofGetLastFrameTime());
-//        mainArtist1Img.updateZoom(ofGetLastFrameTime());
-//        
-//        mainArtist2Img.updateTranslate(ofGetLastFrameTime());
-//        mainArtist2Img.updateZoom(ofGetLastFrameTime());
         
         updateColor(idle1, idle2);
         
@@ -102,16 +55,13 @@ void ofApp::update(){
         mainArtist1Img.update();
         mainArtist2Img.update();
         
-//        curTime += ofGetLastFrameTime() * 1000;
-//        if (curTime > intervalTime) {
-//            curTime = 0.0;
-//            resetAnimation();
-//        }
-        
     }
 }
 
-//--------------------------------------------------------------
+/**
+ * Draws the screen it draws the background and, if necessary
+ * the SubsectionImages
+ */
 void ofApp::draw(){
     drawIdle();
     if (drawArtists) {
@@ -130,7 +80,8 @@ void ofApp::onArtistAnimationComplete(string & evtString) {
 
 
 /**
- * Draw the Artist Images
+ * Draw the Artist Images. This draws each of the SubsectionImages at
+ * at the specified location (from the upper-left corner)
  */
 void ofApp::drawArtistImages() {
     startingArtist11Img.draw(10, 10);
@@ -157,7 +108,8 @@ void ofApp::drawArtistImages() {
 
 
 /**
- * Draw the idle animation
+ * Draw the idle animation. This consists of rectangles that hold the 
+ * place of images
  */
 void ofApp::drawIdle() {
     ofSetColor(curColor);
@@ -242,6 +194,10 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 }
 
 
+/**
+ * This initializes the SubsectionImages. It does so according to the length and
+ * width specified in the panels that were defined in the header
+ */
 void ofApp::initImages() {
     startingArtist11Img.init(startingArtist11.width, startingArtist11.height, 0, 0);
     startingArtist12Img.init(startingArtist12.width, startingArtist12.height, 0, 0);
@@ -266,7 +222,7 @@ void ofApp::initImages() {
 
 
 /**
- * Given an array of images, load each of them into the arra
+ * Loads teh default image for each image
  */
 void ofApp::loadImages() {
     string defaultImage = "images/default.jpg";
@@ -410,8 +366,11 @@ void ofApp::defineFadeOut(float duration, float delay) {
 };
 
 
+/**
+ * This is used to reset the animations. It initializes them to their default state, then
+ * defines the animations
+ */
 void ofApp::resetAnimation() {
-    
     // reset to default
     initImages();
     defineAnimations(3000, 1000);
